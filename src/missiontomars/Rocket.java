@@ -16,9 +16,11 @@ abstract class Rocket implements SpaceShip {
 //     public abstract double getWeight();
 
     public abstract double getMaxCargo();
+    public abstract double getCost();
 
     private final ArrayList<Item> cargo = new ArrayList<Item>();
 
+    @Override
     public void carry(Item item) {
         if (!canCarry(item)) throw new RuntimeException("Item too big to carry");
         cargo.add(item);
@@ -28,7 +30,8 @@ abstract class Rocket implements SpaceShip {
         return cargo;
     }
 
-    boolean canCarry(Item item) {
+    @Override
+    public boolean canCarry(Item item) {
         if (this.getCurrentCargoSize()+item.getWeight() <= this.getMaxCargo()) {
             return true;
         } else {
@@ -36,7 +39,7 @@ abstract class Rocket implements SpaceShip {
         }
     }
 
-    private double getCurrentCargoSize() {
+    protected double getCurrentCargoSize() {
         double result = 0;
         for (Item item : cargo) {
             result += item.getWeight();

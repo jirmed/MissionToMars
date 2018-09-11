@@ -26,6 +26,14 @@ public class RocketTest {
     public void setUp() {
         rocket = new Rocket() {
             @Override
+            public double getCost() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            @Override
+            public boolean land() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            @Override
             public boolean launch() {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
