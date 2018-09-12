@@ -20,10 +20,10 @@ import static org.junit.Assert.*;
  * @author jirka
  */
 public class CargoDAOTest {
-    
+
     public CargoDAOTest() {
     }
-    
+
     @Before
     public void setUp() {
     }
@@ -37,10 +37,38 @@ public class CargoDAOTest {
         File file = new File("test/data/testdata.txt");
         CargoDAO cargoDAO = new CargoDAO(new Scanner(file));
         ArrayList<Item> result = cargoDAO.loadCargo();
-        assertThat("Should not be empty",result, is(notNullValue()));
-        assertThat("Should have 15 items",result.size(), is(15));
-        assertThat("First item weight",result.get(0).getWeight(),is(2000));
-        assertThat("First item weight",result.get(0).getName(),is("building tools"));
+        assertThat("Should not be empty", result, is(notNullValue()));
+        assertThat("Should have 15 items", result.size(), is(15));
+        assertThat("First item weight", result.get(0).getWeight(), is(2000));
+        assertThat("First item weight", result.get(0).getName(), is("building tools"));
     }
-    
+
+    @Test
+    public void testLoadCargoInvalidWeightData() throws FileNotFoundException {
+        System.out.println("loadCargo");
+        File file = new File("test/data/testdata_fail_1.txt");
+        CargoDAO cargoDAO = new CargoDAO(new Scanner(file));
+        ArrayList<Item> result;
+        try {
+            result = cargoDAO.loadCargo();
+            fail("Should fail on line 2");
+        } catch (InvalidInputException e) {
+            assertThat("Should fail on line 2", e.getErrLine(), is(2));
+        }
+    }
+
+    @Test
+    public void testLoadCargoInvalidNumberOfParameters() throws FileNotFoundException {
+        System.out.println("loadCargo");
+        File file = new File("test/data/testdata_fail_2.txt");
+        CargoDAO cargoDAO = new CargoDAO(new Scanner(file));
+        ArrayList<Item> result;
+        try {
+            result = cargoDAO.loadCargo();
+            fail("Should fail on line 4");
+        } catch (InvalidInputException e) {
+            assertThat("Should fail on line 4", e.getErrLine(), is(4));
+        }
+    }
+
 }
