@@ -11,11 +11,12 @@ import java.util.Random;
  *
  * @author jirka
  */
-public class U1 extends Rocket {
-    private static final double MAX_CARGO = 8000;
-    private static final double COST = 100000000;
-    private static final double LAUNCH_CRASH_PROBABILITY = 0.05;
-    private static final double LAND_CRASH_PROBABILITY = 0.01;
+public class U2 extends Rocket {
+
+    private static final double MAX_CARGO = 11000;
+    private static final double COST = 120000000;
+    private static final double LAUNCH_CRASH_PROBABILITY = 0.04;
+    private static final double LAND_CRASH_PROBABILITY = 0.08;
     private final Random random = new Random();
 
     @Override
@@ -30,12 +31,12 @@ public class U1 extends Rocket {
 
     @Override
     public boolean land() {
-        return (LAND_CRASH_PROBABILITY*this.getCurrentCargoSize()/this.getMaxCargo() > random.nextDouble());
+        return (LAND_CRASH_PROBABILITY * this.getCurrentCargoSize() / this.getMaxCargo() > random.nextDouble());
     }
 
     @Override
     public boolean launch() {
-        return (LAND_CRASH_PROBABILITY*this.getCurrentCargoSize()/this.getMaxCargo() > random.nextDouble());
+        return (LAND_CRASH_PROBABILITY * this.getCurrentCargoSize() / this.getMaxCargo() > random.nextDouble());
     }
-    
+
 }
