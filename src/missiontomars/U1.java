@@ -6,6 +6,7 @@
 package missiontomars;
 
 import java.util.Random;
+import missiontomars.Rocket;
 
 /**
  *

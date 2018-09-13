@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author jiri21
  */
-abstract class Rocket implements SpaceShip {
+public abstract class Rocket implements SpaceShip {
 //     public abstract double getCost();
 //     public abstract double getWeight();
 
